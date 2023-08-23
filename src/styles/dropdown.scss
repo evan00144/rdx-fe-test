@@ -1,0 +1,10 @@
+
+.dropdown-toggle {
+    &::after {
+      display: none !important;
+    }
+  }
+  .dropdown {
+    height: fit-content;
+  }
+  

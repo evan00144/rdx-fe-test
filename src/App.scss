@@ -1,0 +1,42 @@
+// import bootstrap
+$theme-colors: (
+  "primary": #0bb885,
+  "secondary": #ff814a,
+  "bg": #151a2e,
+  "sidebar": #171e37,
+  "card": #1c243f,
+) !default;
+@import "bootstrap/scss/bootstrap";
+@import "./styles/breadcrumb.scss";
+@import "./styles/card.scss";
+@import "./styles/button.scss";
+@import "./styles/dropdown.scss";
+@import "./styles/form.scss";
+
+* {
+  font-family: "Inter", sans-serif !important;
+  // color:white !important;
+}
+
+.chart {
+  opacity: 0;
+
+  &.fadeIn {
+    opacity: 1;
+    transition: 0.5s;
+  }
+
+  &.fadeOut {
+    opacity: 0;
+    transition: 0.5s;
+  }
+}
+
+@keyframes opacityKey {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
