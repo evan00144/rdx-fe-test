@@ -25,13 +25,17 @@ export default function HomePage() {
       icon: <TotalCostIcon />,
       grid: {
         "1220": {
-          column: "1/3",
+          column: "1/4",
           row: "1",
         },
-        "1000": {
-          column: "1/3",
+        "896": {
+          column: "1/5",
           row: "1",
         },
+        "700":{
+          column:'1/2',
+          row:'1'
+        }
       },
       active: true,
     },
@@ -41,13 +45,17 @@ export default function HomePage() {
       icon: <TrophyIcon />,
       grid: {
         "1220": {
-          column: "1/3",
+          column: "4/7",
           row: "1",
         },
-        "1000": {
+        "896": {
           column: "1/3",
-          row: "1",
+          row: "2",
         },
+        "700":{
+          column:'1/2',
+          row:'2'
+        }
       },
     },
     {
@@ -57,12 +65,16 @@ export default function HomePage() {
       grid: {
         "1220": {
           column: "1/3",
-          row: "1",
+          row: "2",
         },
-        "1000": {
-          column: "1/3",
-          row: "1",
+        "896": {
+          column: "3/5",
+          row: "2",
         },
+        "700":{
+          column:'1/2',
+          row:'3'
+        }
       },
     },
     {
@@ -71,13 +83,17 @@ export default function HomePage() {
       icon: <ChartIcon width={32} />,
       grid: {
         "1220": {
-          column: "1/3",
-          row: "1",
+          column: "3/5",
+          row: "2",
         },
-        "1000": {
+        "896": {
           column: "1/3",
-          row: "1",
+          row: "3",
         },
+        "700":{
+          column:'1/2',
+          row:'4'
+        }
       },
     },
     {
@@ -86,13 +102,17 @@ export default function HomePage() {
       icon: <WalletIcon />,
       grid: {
         "1220": {
-          column: "1/3",
-          row: "1",
+          column: "5/7",
+          row: "2",
         },
-        "1000": {
-          column: "1/3",
-          row: "1",
+        "896": {
+          column: "3/5",
+          row: "3",
         },
+        "700":{
+          column:'1/2',
+          row:'5'
+        }
       },
     },
   ];
@@ -101,7 +121,7 @@ export default function HomePage() {
       <Sidebar />
       <ContentContainer>
         <Header />
-        <Container
+        <Container fluid
           style={{
             padding: "2.8125rem 2rem",
           }}
@@ -144,26 +164,23 @@ export default function HomePage() {
   );
 }
 
-const GridContainer = styled.div`
-  display: inline-grid;
-  grid-template-columns: repeat(5, 1fr);
-  width: 100%;
-  gap: 1.5rem;
-  @media (max-width: 1220px) {
-    grid-template-columns: 5fr;
-    grid-template-rows: 4fr;
-  }
-`;
-
 const EarningContainer = styled.div`
   @media (max-width: 1439px) {
     grid-row: 1;
     grid-column: 1 / 3;
   }
+
+  @media (max-width: 700px) {
+    grid-row: 1;
+    grid-column: 1 / 2;
+
 `;
 
 const OrdersContainer = styled.div`
   @media (max-width: 1439px) {
+    grid-row: 2;
+  }
+  @media (max-width: 700px) {
     grid-row: 2;
   }
 `;
@@ -172,6 +189,9 @@ const ProfitContainer = styled.div`
   @media (max-width: 1439px) {
     grid-row: 2;
   }
+
+  @media (max-width: 700px) {
+    grid-row: 3;
 `;
 
 const TotalProfitContainer = styled.div`
@@ -181,6 +201,9 @@ const TotalProfitContainer = styled.div`
     grid-row: 3;
     grid-column: 1 / 3;
   }
+  @media (max-width: 700px) {
+    grid-column: 1 / 2;
+    grid-row: 4;
 `;
 
 const GridItemLeft = styled.div`
@@ -196,22 +219,68 @@ const GridItemLeft = styled.div`
   }
   @media (max-width: 1220px) {
     grid-row: 3;
+    grid-column: 1 / 7;
+  }
+
+  @media (max-width: 896px) {
+    grid-row: 4;
     grid-column: 1 / 5;
   }
-`;
 
+
+  @media (max-width: 700px) {
+    grid-column: 1 / 2;
+    grid-row: 6;
+    grid-template-columns: 1fr;
+    grid-template-rows: 4fr;
+  }
+`;
+const GridContainer = styled.div`
+  display: inline-grid;
+  grid-template-columns: repeat(5, 1fr);
+  width: 100%;
+  gap: 1.5rem;
+  @media (max-width: 1220px) {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 4fr;
+  }
+
+  @media (max-width: 896px) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 6fr;
+  }
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 7fr;
+  }
+`;
 const GridItemRight = styled.div`
   grid-row: 2;
   grid-column: 4 / 6;
 
   @media (max-width: 1220px) {
     grid-row: 4;
+    grid-column: 1 / 7;
+  }
+
+  @media (max-width: 896px) {
+    grid-row: 5;
     grid-column: 1 / 5;
   }
-`;
 
+  @media (max-width: 700px) {
+    grid-row: 7;
+    grid-column: 1 / 2;
+
+  }
+`;
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding-left: 15.625rem;
+
+  @media (max-width: 700px) {
+    padding-left:0;
+  }
 `;

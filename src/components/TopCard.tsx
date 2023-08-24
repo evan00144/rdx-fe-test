@@ -12,7 +12,7 @@ interface TopCardProps {
 
 interface IGrid {
   "1220": gridProps;
-  "1000": gridProps;
+  "896": gridProps;
 }
 
 interface gridProps {
@@ -30,7 +30,7 @@ export default function TopCard({
       column: "1/3",
       row: "1",
     },
-    "1000": {
+    "896": {
       column: "1/3",
       row: "1",
     },
@@ -43,6 +43,8 @@ export default function TopCard({
         grid-row: ${item[1].row};
       };`;
     });
+    // invert
+    arrayMedia.reverse();
     console.log(arrayMedia);
     return arrayMedia.join("");
   };

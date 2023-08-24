@@ -9,6 +9,7 @@ export default function Header() {
       }}
     >
       <Container
+      fluid
         style={{
           padding: "0 2rem",
         }}

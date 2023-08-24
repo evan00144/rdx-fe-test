@@ -83,6 +83,10 @@ const SidebarContainer = styled.div`
   min-height: 100vh;
   padding: 1.25rem;
   color: #6c747d;
+
+  @media (max-width: 700px) {
+    display: none;
+  }
 `;
 
 const SidebarItem = styled(NavLink)`
