@@ -10,7 +10,7 @@ export default function Earning() {
   const selectItem = ["Last Week", "Two Week", "Last Month"];
 
   return (
-    <Card>
+    <Card >
       <div className="d-flex mb-auto justify-content-between">
         <div
           className="fw-bold"
