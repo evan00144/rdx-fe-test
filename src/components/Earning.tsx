@@ -43,7 +43,7 @@ export default function Earning() {
         </Dropdown>
       </div>
       <Row className="g-0">
-        <Col sm="7">
+        <Col xs='7' sm="7">
           {/* <Earnings1Chart /> */}
           {selected === "Last Week" && <Echart height={128} />}
           {selected !== "Last Week" && (
@@ -102,7 +102,7 @@ export default function Earning() {
           )}
         </Col>
         {selected === "Last Week" && (
-          <Col sm="5">
+          <Col xs='5' sm="5">
             <div className="d-flex h-100 ms-1 justify-content-center gap-4 flex-column">
               <Legend>
                 <CircleLegend color="#0bb885" />
@@ -122,7 +122,7 @@ export default function Earning() {
           </Col>
         )}
         {selected !== "Last Week" && (
-          <Col sm="5">
+          <Col xs='5' sm="5">
             <div className="d-flex h-100 ms-1 justify-content-center gap-4 flex-column">
               <Legend>
                 <CircleLegend color="#0bb885" />
