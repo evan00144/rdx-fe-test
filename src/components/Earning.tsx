@@ -11,7 +11,7 @@ export default function Earning() {
 
   return (
     <Card>
-      <div className="d-flex mb-3 justify-content-between">
+      <div className="d-flex mb-auto justify-content-between">
         <div
           className="fw-bold"
           style={{

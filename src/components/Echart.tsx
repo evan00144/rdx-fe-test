@@ -72,16 +72,18 @@ export default function Echart({
       myChart.setOption(option);
     }
 
-    window.addEventListener("resize", () => {
-      myChart.resize;
-    });
+    const handleResize = () => {
+      myChart.resize(); // Call the resize method
+    };
+
+    window.addEventListener("resize", handleResize);
 
     // Cleanup
     return () => {
-      window.removeEventListener("resize", () => {
-        myChart.resize;
-      });
+      window.removeEventListener("resize", handleResize);
+      myChart.dispose(); // Dispose the chart instance when the component is unmounted
     };
+
   }, [id,opt]);
   return (
     <div
