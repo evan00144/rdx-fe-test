@@ -1,98 +1,13 @@
-import { Card, Dropdown } from "react-bootstrap";
+import { Card, Col, Dropdown, Row } from "react-bootstrap";
 // import Earnings1Chart from "../charts/Earnings1Chart";
 import ChevronDownIcon from "../icons/ChevronDownIcon";
-import { useEffect, useState } from "react";
-import styled from "styled-components";
-import Earnings2Chart from "../charts/Earnings2Chart";
-import ReactECharts from "echarts-for-react";
-import * as echarts from "echarts";
+import { useState } from "react";
+import styled, { keyframes } from "styled-components";
+import Echart from "./Echart";
 
 export default function Earning() {
   const [selected, setSelected] = useState("Last Week");
   const selectItem = ["Last Week", "Two Week", "Last Month"];
-
-  useEffect(() => {
-    const dom = document.getElementById("chartEarning") as HTMLDivElement;
-    const myChart = echarts.init(dom, null, {
-      renderer: "canvas",
-      useDirtyRect: false,
-    });
-
-    const option: echarts.EChartsOption = {
-      angleAxis: {
-        show: false,
-        max: 10,
-      },
-      radiusAxis: {
-        show: false,
-        data: ["", ""],
-      },
-      polar: {
-        radius: [80, "100%"],
-      },
-      legend: {
-        show: true,
-        orient: "vertical",
-        top: "center",
-        right: "25%",
-        data: ["data1", "data2"],
-        itemWidth: 10,
-        itemHeight: 10,
-      },
-      series: [
-        {
-          type: "bar",
-          data: [{ value: 7, name: "Search Engine" }],
-          barWidth: 15,
-          barGap: 1,
-          colorBy: "data",
-          name: "data1",
-          showBackground: true,
-          backgroundStyle: {
-            color: "#1F2849",
-          },
-          color: "#FF814A",
-          roundCap: true,
-          label: {
-            show: false,
-            position: "start",
-            formatter: "{a}",
-          },
-          coordinateSystem: "polar",
-        },
-        {
-          type: "bar",
-          data: [{ value: 8, name: "Direct" }],
-          barWidth: 15,
-          color: "#0BB885",
-          colorBy: "data",
-          name: "data2",
-          showBackground: true,
-          roundCap: true,
-          backgroundStyle: {
-            color: "#1F2849",
-          },
-          label: {
-            show: false,
-            position: "start",
-            formatter: "{a}",
-          },
-          coordinateSystem: "polar",
-        },
-      ],
-    };
-
-    if (option && typeof option === "object") {
-      myChart.setOption(option);
-    }
-
-    window.addEventListener("resize", myChart.resize);
-
-    // Cleanup
-    return () => {
-      window.removeEventListener("resize", myChart.resize);
-    };
-  }, []);
 
   return (
     <Card>
@@ -127,28 +42,14 @@ export default function Earning() {
           </CustomDropdownMenu>
         </Dropdown>
       </div>
-      <div className="position-relative">
-        <div
-          className={`chart position-absolute bottom-0 w-100 ${
-            selected == "Last Week" ? "fadeIn" : "fadeOut"
-          }`}
-        >
+      <Row className="g-0">
+        <Col sm="7">
           {/* <Earnings1Chart /> */}
-          <div
-            style={{
-              height: "300px",
-            }}
-          >
-            <div
-              id="chartEarning"
-              style={{ width: "100%", height: "100%" }}
-            ></div>
-            {/* <ReactECharts
-              style={{
-                height: "100%",
-                width: "100%",
-              }}
-              option={{
+          {selected === "Last Week" && <Echart height={128} />}
+          {selected !== "Last Week" && (
+            <Echart
+              id={"earning2"}
+              opt={{
                 angleAxis: {
                   show: false,
                   max: 10,
@@ -158,53 +59,34 @@ export default function Earning() {
                   data: ["", ""],
                 },
                 polar: {
-                  radius: [50, "40%"],
+                  radius: [35, "100%"],
                 },
-                legend: {
-                  show: true,
-                  orient: "vertical",
-                  top: "center",
-                  transform: "translateY(-50%)",
-                  right: "25%",
-                  data: ["data1", "data2"],
-                  itemWidth: 10, // Adjust the width of the legend items
-                  itemHeight: 10, // Adjust the height of the legend items
+
+                grid: {
+                  left: 0,
+                  right: 0,
+                  top: 0,
+                  bottom: 0,
+                  containLabel: true, // Ensure labels are within the chart area
                 },
                 series: [
                   {
                     type: "bar",
-                    data: [{ value: 7, name: "Search Engine" }],
-                    // barCategoryGap: '45%',
-                    barWidth: 15,
-                    barGap: 1,
+                    data: [
+                      { value: 5, name: "Search Engine" },
+                      { value: 5, name: "Direct" },
+                    ],
                     colorBy: "data",
                     name: "data1",
+                    barWidth: 10,
                     showBackground: true,
+                    barCategoryGap: "120%", // Add gap between different categories
+
                     backgroundStyle: {
                       color: "#1F2849",
                     },
-                    color: "#FF814A",
+                    color: ["#FF814A", "#0BB885"],
                     roundCap: true,
-                    label: {
-                      show: false,
-                      position: "start",
-                      formatter: "{a}",
-                    },
-                    coordinateSystem: "polar",
-                  },
-                  {
-                    type: "bar",
-                    data: [{ value: 8, name: "Direct" }],
-                    // barCategoryGap: '45%',
-                    barWidth: 15,
-                    color: "#0BB885",
-                    colorBy: "data",
-                    name: "data2",
-                    showBackground: true,
-                    roundCap: true,
-                    backgroundStyle: {
-                      color: "#1F2849",
-                    },
                     label: {
                       show: false,
                       position: "start",
@@ -213,30 +95,53 @@ export default function Earning() {
                     coordinateSystem: "polar",
                   },
                 ],
+                responsive: true, // Enable responsiveness
               }}
-            /> */}
-          </div>
-        </div>
-        <div
-          className={`chart  ${
-            selected == "Two Week" || selected == "Last Month"
-              ? "fadeIn"
-              : "fadeOut"
-          }`}
-        >
-          <div
-            style={{
-              height: "300px",
-            }}
-          >
-            <div
-              id="chartEarning"
-              style={{ width: "100%", height: "100%" }}
-            ></div>
-           
-          </div>{" "}
-        </div>
-      </div>
+              height={128}
+            />
+          )}
+        </Col>
+        {selected === "Last Week" && (
+          <Col sm="5">
+            <div className="d-flex h-100 ms-1 justify-content-center gap-4 flex-column">
+              <Legend>
+                <CircleLegend color="#0bb885" />
+                <div>
+                  <div className="name">Total Sales</div>
+                  <div className="value">251K</div>
+                </div>
+              </Legend>
+              <Legend>
+                <CircleLegend color="#FF814A" />
+                <div>
+                  <div className="name">Total Orders</div>
+                  <div className="value">176K</div>
+                </div>
+              </Legend>
+            </div>
+          </Col>
+        )}
+        {selected !== "Last Week" && (
+          <Col sm="5">
+            <div className="d-flex h-100 ms-1 justify-content-center gap-4 flex-column">
+              <Legend>
+                <CircleLegend color="#0bb885" />
+                <div>
+                  <div className="name">Total Sales</div>
+                  <div className="value">251K</div>
+                </div>
+              </Legend>
+              <Legend>
+                <CircleLegend color="#FF814A" />
+                <div>
+                  <div className="name">Total Orders</div>
+                  <div className="value">147K</div>
+                </div>
+              </Legend>
+            </div>
+          </Col>
+        )}
+      </Row>
       {/* {selected === "Last Week" ? <Earnings1Chart /> : <Earnings2Chart />} */}
     </Card>
   );
@@ -267,4 +172,33 @@ const CustomDropdownMenu = styled(Dropdown.Menu)`
     border-radius: 30rem;
     background: #1c243f;
   }
+`;
+const animationKey = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`
+const Legend = styled.div`
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  .name {
+    font-size: 0.75rem;
+  }
+  .value {
+    font-size: 0.875rem;
+    color: #8a92a6;
+    animation: ${animationKey} 0.3s;
+  }
+`;
+
+const CircleLegend = styled.div`
+  width: 8.13px;
+  height: 8.13px;
+  border-radius: 50%;
+  display: inline-block;
+  background: ${(props) => props?.color};
 `;

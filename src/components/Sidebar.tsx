@@ -62,7 +62,7 @@ export default function Sidebar() {
               marginLeft: "auto",
               padding: "0 0.4rem",
               lineHeight: "1.5",
-              fontSize: "0.8rem",
+              fontSize: "0.75rem",
               color: "var(--bs-bg)",
               borderRadius: "4px",
             }}>{item.count}</div>

@@ -16,8 +16,8 @@ export default function Header() {
         <div
           className="d-flex justify-content-end align-items-center"
           style={{
-            padding: ".8rem 0",
-            gap: ".8rem",
+            padding: ".75rem 0",
+            gap: ".75rem",
           }}
         >
           <CircleImage />

@@ -113,7 +113,7 @@ const ItemBullet = styled.div`
 
 const Time = styled.div`
   color: #9f9f9f;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
 `;
 
 const Content = styled.div`

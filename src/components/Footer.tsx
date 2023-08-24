@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <div  style={{
-      fontSize:'.8rem',
+      fontSize:'.75rem',
       marginTop:'2.375rem',
       color:'#8e8e8e',
     }}>
