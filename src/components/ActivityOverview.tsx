@@ -104,10 +104,6 @@ const Item = styled.div`
   display: flex;
   gap: 1rem;
   cursor: pointer;
-  &:hover {
-    background-color: #1f2849;
-    border-radius: 0 0.625rem 0.625rem 0;
-  }
 `;
 const ItemBullet = styled.div`
   // d-flex flex-column align-items-center justify-content-center
