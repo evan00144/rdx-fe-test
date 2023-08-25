@@ -15,7 +15,7 @@ import Orders from "../components/Orders";
 import Profit from "../components/Profit";
 import TotalProfit from "../components/TotalProfit";
 import Footer from "../components/Footer";
-import React from "react";
+import React, { useState } from "react";
 
 export default function HomePage() {
   const topCardData = [
@@ -116,11 +116,13 @@ export default function HomePage() {
       },
     },
   ];
+
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   return (
     <>
-      <Sidebar />
+      <Sidebar isOpen={isSidebarOpen} />
       <ContentContainer>
-        <Header />
+        <Header isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
         <Container
           fluid
           style={{

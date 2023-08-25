@@ -103,7 +103,7 @@ const Line = styled.div`
 const Item = styled.div`
   display: flex;
   gap: 1rem;
-  cursor: pointer;
+  // cursor: pointer;
 `;
 const ItemBullet = styled.div`
   // d-flex flex-column align-items-center justify-content-center

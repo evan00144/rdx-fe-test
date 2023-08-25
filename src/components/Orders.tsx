@@ -45,9 +45,8 @@ export default function Orders() {
             {
               data: [25, 80, 50, 25, 60],
               type: "bar",
-              barGap: 20,
 
-              barCategoryGap: 25,
+              barCategoryGap: 20,
               showBackground: true,
               color: "#FF814A",
               roundCap: true,

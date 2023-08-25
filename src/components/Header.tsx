@@ -1,7 +1,13 @@
 import { Container } from "react-bootstrap";
 import { styled } from "styled-components";
+import BurgerIcon from "../icons/BurgerIcon";
 
-export default function Header() {
+interface iHeader {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+}
+
+export default function Header({ isOpen, setIsOpen }: iHeader) {
   return (
     <div
       style={{
@@ -14,7 +20,10 @@ export default function Header() {
           padding: "0.4rem 2rem",
         }}
       >
-        <div className="d-flex align-items-center justify-content-end">
+        <div className="d-flex align-items-center ">
+          <ToggleSidebar onClick={() => setIsOpen(!isOpen)}>
+            <BurgerIcon />
+          </ToggleSidebar>
           <Profile>
             <CircleImage />
             <span
@@ -51,11 +60,19 @@ const CircleImage = styled.div`
   }
 `;
 
+const ToggleSidebar = styled.div`
+  display: none;
+  cursor: pointer;
+  @media (max-width: 700px) {
+    display: block;
+  }
+`;
 const Profile = styled.div`
   display: flex;
   align-items: center;
   gap: 0.75rem;
   border-radius: 0.625rem;
+  margin-left: auto;
   cursor: pointer;
   padding: 0.35rem 1rem;
   &:hover {

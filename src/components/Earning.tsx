@@ -10,7 +10,7 @@ export default function Earning() {
   const selectItem = ["Last Week", "Two Week", "Last Month"];
 
   return (
-    <Card >
+    <Card>
       <div className="d-flex mb-auto justify-content-between">
         <div
           className="fw-bold"
@@ -43,10 +43,10 @@ export default function Earning() {
         </Dropdown>
       </div>
       <Row className="g-0">
-        <Col xs='7' sm="7">
+        <Col xs="7" sm="7">
           {/* <Earnings1Chart /> */}
           {selected === "Last Week" && <Echart height={128} />}
-          {selected !== "Last Week" && (
+          {selected == "Two Week" && (
             <Echart
               id={"earning2"}
               opt={{
@@ -100,47 +100,98 @@ export default function Earning() {
               height={128}
             />
           )}
+          {selected == "Last Month" && (
+            <Echart
+              id={"earning2"}
+              opt={{
+                angleAxis: {
+                  show: false,
+                  max: 10,
+                },
+                radiusAxis: {
+                  show: false,
+                  data: ["", ""],
+                },
+                polar: {
+                  radius: [35, "100%"],
+                },
+
+                grid: {
+                  left: 0,
+                  right: 0,
+                  top: 0,
+                  bottom: 0,
+                  containLabel: true, // Ensure labels are within the chart area
+                },
+                series: [
+                  {
+                    type: "bar",
+                    data: [
+                      { value: 2, name: "Search Engine" },
+                      { value: 3, name: "Direct" },
+                    ],
+                    colorBy: "data",
+                    name: "data1",
+                    barWidth: 10,
+                    showBackground: true,
+                    barCategoryGap: "120%", // Add gap between different categories
+
+                    backgroundStyle: {
+                      color: "#1F2849",
+                    },
+                    color: ["#FF814A", "#0BB885"],
+                    roundCap: true,
+                    label: {
+                      show: false,
+                      position: "start",
+                      formatter: "{a}",
+                    },
+                    coordinateSystem: "polar",
+                  },
+                ],
+                responsive: true, // Enable responsiveness
+              }}
+              height={128}
+            />
+          )}
         </Col>
-        {selected === "Last Week" && (
-          <Col xs='5' sm="5">
-            <div className="d-flex h-100 ms-1 justify-content-center gap-4 flex-column">
+        <Col xs="5" sm="5">
+          <div className="d-flex h-100 ms-1 justify-content-center gap-4 flex-column">
+            <>
               <Legend>
                 <CircleLegend color="#0bb885" />
                 <div>
                   <div className="name">Total Sales</div>
-                  <div className="value">251K</div>
+                  {(selected === "Last Week" || selected == "Two Week") && (
+                    <div className="value">251K</div>
+                  )}
+
+                  {selected === "Last Month" && (
+                    <div className="value">252K</div>
+                  )}
                 </div>
               </Legend>
               <Legend>
                 <CircleLegend color="#FF814A" />
                 <div>
                   <div className="name">Total Orders</div>
-                  <div className="value">176K</div>
+                  <div className="value">
+                    {selected === "Last Week" && (
+                      <div className="value">176K</div>
+                    )}
+                    {selected === "Two Week" && (
+                      <div className="value">147K</div>
+                    )}
+
+                    {selected === "Last Month" && (
+                      <div className="value">100K</div>
+                    )}
+                  </div>
                 </div>
               </Legend>
-            </div>
-          </Col>
-        )}
-        {selected !== "Last Week" && (
-          <Col xs='5' sm="5">
-            <div className="d-flex h-100 ms-1 justify-content-center gap-4 flex-column">
-              <Legend>
-                <CircleLegend color="#0bb885" />
-                <div>
-                  <div className="name">Total Sales</div>
-                  <div className="value">251K</div>
-                </div>
-              </Legend>
-              <Legend>
-                <CircleLegend color="#FF814A" />
-                <div>
-                  <div className="name">Total Orders</div>
-                  <div className="value">147K</div>
-                </div>
-              </Legend>
-            </div>
-          </Col>
-        )}
+            </>
+          </div>
+        </Col>
       </Row>
       {/* {selected === "Last Week" ? <Earnings1Chart /> : <Earnings2Chart />} */}
     </Card>
@@ -180,7 +231,7 @@ const animationKey = keyframes`
   to {
     opacity: 1;
   }
-`
+`;
 const Legend = styled.div`
   display: flex;
   gap: 1rem;

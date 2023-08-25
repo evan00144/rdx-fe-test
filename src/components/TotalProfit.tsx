@@ -2,10 +2,176 @@ import { Button, Card, Dropdown } from "react-bootstrap";
 import { styled } from "styled-components";
 import Echart from "./Echart";
 import ChevronDownGreenIcon from "../icons/ChevronDownGreenIcon";
+import { useMemo, useState } from "react";
 
 export default function TotalProfit() {
+  const year = ["2023", "2024"];
+  const [selected, setSelected] = useState("2023");
+  const TotalProfitChartOne = useMemo(() => {
+    return (
+      <Echart
+        id="totalProfit"
+        height={250}
+        opt={{
+          tooltip: {
+            trigger: "axis",
+            axisPointer: {
+              type: "shadow",
+            },
+          },
+          grid: {
+            left: "0%",
+            right: "0%",
+            bottom: "5%",
+            top: "5%",
+            containLabel: true,
+          },
+          yAxis: [
+            {
+              type: "value",
+              max: 300,
+              min: -200,
+              splitLine: {
+                show: false,
+              },
+            },
+          ],
+          xAxis: [
+            {
+              offset: 10, // Offset to start above zero
+              type: "category",
+              axisTick: {
+                show: false,
+              },
+              axisLine: {
+                show: false,
+              },
+              data: [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+              ],
+            },
+          ],
+          series: [
+            {
+              name: "Positive",
+              type: "bar",
+              stack: "Total",
+              z: 2,
+              color: "transparent",
+              itemStyle: {},
+              emphasis: {
+                focus: "series",
+              },
+              data: [20, 20, 20, 20, 20, 20, 20, 20, 20],
+            },
+            {
+              name: "Income",
+              type: "bar",
+              stack: "Total",
+              itemStyle: {
+                borderRadius: [100, 100, 0, 0],
+              },
+              emphasis: {
+                focus: "series",
+              },
+              color: "#0BB885 ",
+              data: [120, 250, 300, 270, 120, 450, 80, 200, 230],
+              barCategoryGap: "80%", // Add gap between different categories
+            },
+
+            {
+              name: "Negative",
+              type: "bar",
+              stack: "Total",
+              z: 2,
+              color: "transparent",
+              itemStyle: {},
+              emphasis: {
+                focus: "series",
+              },
+              data: [-20, -20, -20, -20, -20, -20, -20, -20, -20],
+            },
+            {
+              name: "Expenses",
+              type: "bar",
+              stack: "Total",
+              itemStyle: {
+                borderRadius: [0, 0, 100, 100],
+              },
+              color: "#FF814A",
+              emphasis: {
+                focus: "series",
+              },
+              data: [-180, -80, -50, -200, -150, -100, -120, -110, -130], // Monthly data for Expenses
+            },
+          ],
+        }}
+      />
+    );
+  }, []);
+  const TotalProfitChartTwo = useMemo(() => {
+    return (
+      <Echart
+        id={"totalProfit2"}
+        height={45}
+        width={"100%"}
+        opt={{
+          xAxis: {
+            type: "category",
+            show: false,
+
+            data: [
+              "Jan",
+              "Feb",
+              "Mar",
+              "Apr",
+              "May",
+              "Jun",
+              "Jul",
+              "Aug",
+              "Sep",
+              "oct",
+              "nov",
+              "dec",
+            ],
+          },
+          yAxis: {
+            type: "value",
+            max: 100,
+            show: false,
+          },
+          grid: {
+            top: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
+          },
+          series: [
+            {
+              symbol: "none",
+              data: [50, 40, 25, 60, 30, 45, 0, 100, 45, 40, 15, 55],
+              type: "line",
+              smooth: true,
+              lineStyle: {
+                width: 2,
+                color: "#0BB885",
+              },
+            },
+          ],
+        }}
+      />
+    );
+  }, []);
   return (
-    <Card className="p-0 flex-row">
+    <Card className="p-0 flex-sm-row ">
       <LeftSide>
         <div className="d-flex mb-4 justify-content-between align-items-center">
           <div
@@ -25,112 +191,7 @@ export default function TotalProfit() {
             <LegendText>Expense</LegendText>
           </div>
         </div>
-        <Echart
-          id="totalProfit"
-          height={250}
-          opt={{
-            tooltip: {
-              trigger: "axis",
-              axisPointer: {
-                type: "shadow",
-              },
-            },
-            grid: {
-              left: "0%",
-              right: "0%",
-              bottom: "5%",
-              top: "5%",
-              containLabel: true,
-            },
-            yAxis: [
-              {
-                type: "value",
-                max: 300,
-                min: -200,
-                splitLine: {
-                  show: false,
-                },
-              },
-            ],
-            xAxis: [
-              {
-                offset: 10, // Offset to start above zero
-                type: "category",
-                axisTick: {
-                  show: false,
-                },
-                axisLine: {
-                  show: false,
-                },
-                data: [
-                  "Jan",
-                  "Feb",
-                  "Mar",
-                  "Apr",
-                  "May",
-                  "Jun",
-                  "Jul",
-                  "Aug",
-                  "Sep",
-                ],
-              },
-            ],
-            series: [
-              {
-                name: "Positive",
-                type: "bar",
-                stack: "Total",
-                z: 2,
-                color: "transparent",
-                itemStyle: {},
-                emphasis: {
-                  focus: "series",
-                },
-                data: [20, 20, 20, 20, 20, 20, 20, 20, 20],
-              },
-              {
-                name: "Income",
-                type: "bar",
-                stack: "Total",
-                itemStyle: {
-                  borderRadius: [100, 100, 0, 0],
-                },
-                emphasis: {
-                  focus: "series",
-                },
-                color: "#0BB885 ",
-                data: [120, 250, 300, 270, 120, 450, 80, 200, 230],
-                barCategoryGap: "80%", // Add gap between different categories
-              },
-
-              {
-                name: "Negative",
-                type: "bar",
-                stack: "Total",
-                z: 2,
-                color: "transparent",
-                itemStyle: {},
-                emphasis: {
-                  focus: "series",
-                },
-                data: [-20, -20, -20, -20, -20, -20, -20, -20, -20],
-              },
-              {
-                name: "Expenses",
-                type: "bar",
-                stack: "Total",
-                itemStyle: {
-                  borderRadius: [0, 0, 100, 100],
-                },
-                color: "#FF814A",
-                emphasis: {
-                  focus: "series",
-                },
-                data: [-180, -80, -50, -200, -150, -100, -120, -110, -130], // Monthly data for Expenses
-              },
-            ],
-          }}
-        />
+        {TotalProfitChartOne}
       </LeftSide>
       <RightSide>
         <Dropdown>
@@ -145,16 +206,19 @@ export default function TotalProfit() {
               display: "flex",
               alignItems: " center",
               gap: "0.5rem",
-              marginBottom:"3.725rem"
+              marginBottom: "3.725rem",
             }}
             as={"div"}
           >
-            2023
+            {selected}
             <ChevronDownGreenIcon />
           </Dropdown.Toggle>
           <CustomDropdownMenu>
-            <CustomDropdownItem>2023</CustomDropdownItem>
-            <CustomDropdownItem>2024</CustomDropdownItem>
+            {year.map((item, index) => (
+              <CustomDropdownItem onClick={() => setSelected(item)} key={index}>
+                {item}
+              </CustomDropdownItem>
+            ))}
           </CustomDropdownMenu>
         </Dropdown>
         <h3
@@ -174,59 +238,9 @@ export default function TotalProfit() {
           Latest Month Balance $426.20k
         </span>
 
-        <div className="px-4 w-100">
-          <Echart
-            id={"totalProfit2"}
-            height={45}
-            width={"100%"}
-            opt={{
-              xAxis: {
-                type: "category",
-                show: false,
-
-                data: [
-                  "Jan",
-                  "Feb",
-                  "Mar",
-                  "Apr",
-                  "May",
-                  "Jun",
-                  "Jul",
-                  "Aug",
-                  "Sep",
-                  "oct",
-                  "nov",
-                  "dec",
-                ],
-              },
-              yAxis: {
-                type: "value",
-                max: 100,
-                show: false,
-              },
-              grid: {
-                top: 0,
-                bottom: 0,
-                left: 0,
-                right: 0,
-              },
-              series: [
-                {
-                  symbol: "none",
-                  data: [50, 40, 25, 60, 30, 45, 0, 100, 45, 40, 15, 55],
-                  type: "line",
-                  smooth: true,
-                  lineStyle: {
-                    width: 2,
-                    color: "#0BB885",
-                  },
-                },
-              ],
-            }}
-          />
-        </div>
+        <div className="px-4 w-100">{TotalProfitChartTwo}</div>
         <Button
-          className="fw-bold mt-auto"
+          className="fw-bold mt-sm-auto mt-5"
           style={{
             color: "white",
           }}
@@ -248,6 +262,11 @@ const LeftSide = styled(ContentPadding)`
   flex-direction: column;
   justify-content: space-between;
   border-right: 1px solid #2e4b85;
+  @media (max-width: 575px) {
+    width: 100%;
+    border-right: 0;
+    border-bottom: 1px solid #2e4b85;
+  }
 `;
 
 const RightSide = styled(ContentPadding)`

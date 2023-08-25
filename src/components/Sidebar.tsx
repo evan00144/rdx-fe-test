@@ -5,9 +5,12 @@ import ChartIcon from "../icons/ChartIcon";
 import BellIcon from "../icons/BellIcon";
 import GearIcon from "../icons/GearIcon";
 import LogoutIcon from "../icons/LogoutIcon";
-import {  NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-export default function Sidebar() {
+interface iSidebar {
+  isOpen: boolean;
+}
+export default function Sidebar({ isOpen }: iSidebar) {
   interface Menu {
     icon: JSX.Element;
     title: string;
@@ -43,6 +46,26 @@ export default function Sidebar() {
       link: "/logout",
     },
   ];
+
+  const SidebarContainer = styled.div`
+    background-color: var(--bs-sidebar);
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 250px;
+    min-height: 100vh;
+    padding: 1.25rem;
+    z-index: 1000;
+    color: #6c747d;
+    @media (max-width: 700px) {
+      display: ${isOpen ? "block" : "none"};
+      width: 100%;
+      top: 60px;
+
+    }
+  `;
+
   return (
     <SidebarContainer>
       <Image
@@ -57,15 +80,19 @@ export default function Sidebar() {
           <SidebarItem to={`${item?.link}`} key={index}>
             {item.icon}
             {item.title}
-            <div style={{
-              backgroundColor: "#98FFE0",
-              marginLeft: "auto",
-              padding: "0 0.4rem",
-              lineHeight: "1.5",
-              fontSize: "0.75rem",
-              color: "var(--bs-bg)",
-              borderRadius: "4px",
-            }}>{item.count}</div>
+            <div
+              style={{
+                backgroundColor: "#98FFE0",
+                marginLeft: "auto",
+                padding: "0 0.4rem",
+                lineHeight: "1.5",
+                fontSize: "0.75rem",
+                color: "var(--bs-bg)",
+                borderRadius: "4px",
+              }}
+            >
+              {item.count}
+            </div>
           </SidebarItem>
         ))}
       </div>
@@ -73,28 +100,12 @@ export default function Sidebar() {
   );
 }
 
-const SidebarContainer = styled.div`
-  background-color: var(--bs-sidebar);
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 250px;
-  min-height: 100vh;
-  padding: 1.25rem;
-  color: #6c747d;
-
-  @media (max-width: 700px) {
-    display: none;
-  }
-`;
-
 const SidebarItem = styled(NavLink)`
   display: flex;
   gap: 0.8rem;
   align-items: center;
   padding: 0.8rem 0.8rem;
-  line-height:24px;
+  line-height: 24px;
   border-radius: 8px;
   color: inherit;
   text-decoration: none;
