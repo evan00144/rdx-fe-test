@@ -9,26 +9,22 @@ export default function Header() {
       }}
     >
       <Container
-      fluid
+        fluid
         style={{
-          padding: "0 2rem",
+          padding: "0.4rem 2rem",
         }}
       >
-        <div
-          className="d-flex justify-content-end align-items-center"
-          style={{
-            padding: ".75rem 0",
-            gap: ".75rem",
-          }}
-        >
-          <CircleImage />
-          <span
-            style={{
-              fontSize: ".875rem",
-            }}
-          >
-            Hello, User!
-          </span>
+        <div className="d-flex align-items-center justify-content-end">
+          <Profile>
+            <CircleImage />
+            <span
+              style={{
+                fontSize: ".875rem",
+              }}
+            >
+              Hello, User!
+            </span>
+          </Profile>
         </div>
       </Container>
     </div>
@@ -52,5 +48,17 @@ const CircleImage = styled.div`
     height: 6.63px;
     border-radius: 50%;
     background-color: #5ccc5a;
+  }
+`;
+
+const Profile = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 0.625rem;
+  cursor: pointer;
+  padding: 0.35rem 1rem;
+  &:hover {
+    background-color: #1f2849;
   }
 `;

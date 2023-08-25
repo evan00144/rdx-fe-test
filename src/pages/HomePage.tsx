@@ -32,10 +32,10 @@ export default function HomePage() {
           column: "1/5",
           row: "1",
         },
-        "700":{
-          column:'1/2',
-          row:'1'
-        }
+        "700": {
+          column: "1/2",
+          row: "1",
+        },
       },
       active: true,
     },
@@ -52,10 +52,10 @@ export default function HomePage() {
           column: "1/3",
           row: "2",
         },
-        "700":{
-          column:'1/2',
-          row:'2'
-        }
+        "700": {
+          column: "1/2",
+          row: "2",
+        },
       },
     },
     {
@@ -71,10 +71,10 @@ export default function HomePage() {
           column: "3/5",
           row: "2",
         },
-        "700":{
-          column:'1/2',
-          row:'3'
-        }
+        "700": {
+          column: "1/2",
+          row: "3",
+        },
       },
     },
     {
@@ -90,10 +90,10 @@ export default function HomePage() {
           column: "1/3",
           row: "3",
         },
-        "700":{
-          column:'1/2',
-          row:'4'
-        }
+        "700": {
+          column: "1/2",
+          row: "4",
+        },
       },
     },
     {
@@ -109,10 +109,10 @@ export default function HomePage() {
           column: "3/5",
           row: "3",
         },
-        "700":{
-          column:'1/2',
-          row:'5'
-        }
+        "700": {
+          column: "1/2",
+          row: "5",
+        },
       },
     },
   ];
@@ -121,7 +121,8 @@ export default function HomePage() {
       <Sidebar />
       <ContentContainer>
         <Header />
-        <Container fluid
+        <Container
+          fluid
           style={{
             padding: "2.8125rem 2rem",
           }}
@@ -172,7 +173,7 @@ const EarningContainer = styled.div`
 
   @media (max-width: 700px) {
     grid-row: 1;
-    grid-column: 1 / 2;
+    grid-column: 1 / 3;
 
 `;
 
@@ -181,6 +182,7 @@ const OrdersContainer = styled.div`
     grid-row: 2;
   }
   @media (max-width: 700px) {
+    grid-column: 1 / 2;
     grid-row: 2;
   }
 `;
@@ -191,7 +193,8 @@ const ProfitContainer = styled.div`
   }
 
   @media (max-width: 700px) {
-    grid-row: 3;
+    grid-column: 2/3;
+    grid-row: 2;
 `;
 
 const TotalProfitContainer = styled.div`
@@ -202,8 +205,8 @@ const TotalProfitContainer = styled.div`
     grid-column: 1 / 3;
   }
   @media (max-width: 700px) {
-    grid-column: 1 / 2;
-    grid-row: 4;
+    grid-column: 1 / 3;
+    grid-row: 3;
 `;
 
 const GridItemLeft = styled.div`
@@ -219,6 +222,7 @@ const GridItemLeft = styled.div`
   }
   @media (max-width: 1220px) {
     grid-row: 3;
+    gap: 23px;
     grid-column: 1 / 7;
   }
 
@@ -227,12 +231,11 @@ const GridItemLeft = styled.div`
     grid-column: 1 / 5;
   }
 
-
   @media (max-width: 700px) {
     grid-column: 1 / 2;
     grid-row: 6;
-    grid-template-columns: 1fr;
-    grid-template-rows: 4fr;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 3fr;
   }
 `;
 const GridContainer = styled.div`
@@ -272,7 +275,6 @@ const GridItemRight = styled.div`
   @media (max-width: 700px) {
     grid-row: 7;
     grid-column: 1 / 2;
-
   }
 `;
 const ContentContainer = styled.div`
@@ -281,6 +283,6 @@ const ContentContainer = styled.div`
   padding-left: 15.625rem;
 
   @media (max-width: 700px) {
-    padding-left:0;
+    padding-left: 0;
   }
 `;

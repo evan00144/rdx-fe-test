@@ -1,6 +1,7 @@
-import { Button, Card, Form } from "react-bootstrap";
+import { Button, Card, Dropdown } from "react-bootstrap";
 import { styled } from "styled-components";
 import Echart from "./Echart";
+import ChevronDownGreenIcon from "../icons/ChevronDownGreenIcon";
 
 export default function TotalProfit() {
   return (
@@ -132,14 +133,30 @@ export default function TotalProfit() {
         />
       </LeftSide>
       <RightSide>
-        <Form.Select
-          style={{
-            marginBottom: "3.6875rem",
-            fontSize: "10px",
-          }}
-        >
-          <option>2023</option>
-        </Form.Select>
+        <Dropdown>
+          <Dropdown.Toggle
+            style={{
+              color: "#0bb885",
+              fontSize: " 0.67rem",
+              cursor: "pointer",
+              borderRadius: " 0.25rem",
+              border: "1px solid #0bb885",
+              padding: "0.335rem 0.781875rem",
+              display: "flex",
+              alignItems: " center",
+              gap: "0.5rem",
+              marginBottom:"3.725rem"
+            }}
+            as={"div"}
+          >
+            2023
+            <ChevronDownGreenIcon />
+          </Dropdown.Toggle>
+          <CustomDropdownMenu>
+            <CustomDropdownItem>2023</CustomDropdownItem>
+            <CustomDropdownItem>2024</CustomDropdownItem>
+          </CustomDropdownMenu>
+        </Dropdown>
         <h3
           style={{
             fontSize: "1.9375rem",
@@ -253,4 +270,31 @@ const Circle = styled.span`
 const LegendText = styled.span`
   color: #828282;
   font-size: 0.75rem;
+`;
+
+const CustomDropdownItem = styled(Dropdown.Item)`
+  padding: 0.625rem;
+  font-size: 0.875rem;
+  color: white !important;
+  line-height: 1;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.16);
+  }
+`;
+
+const CustomDropdownMenu = styled(Dropdown.Menu)`
+  padding: 0;
+  overflow: hidden;
+  background: #2e4b85;
+  min-width: 129px;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 9px;
+    right: 9px;
+    width: 6.45px;
+    height: 15px;
+    border-radius: 30rem;
+    background: #1c243f;
+  }
 `;
